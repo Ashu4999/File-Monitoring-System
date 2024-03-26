@@ -19,7 +19,7 @@ export default function Home() {
 
     socket.on("file-update", (data) => {
       console.log("File Update", data);
-      setLogData(prevData => [prevData, ...data.join("\n")]);
+      setLogData(prevData => [prevData, data]);
     });
     return () => {
       socket.disconnect();

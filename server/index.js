@@ -57,7 +57,8 @@ fs.watch("../test.txt", async (eventType, filename) => {
         clientIDs.forEach(clientID => {
         let changedContent = lines.slice(connectedClient[clientID], lines.length);
             if (changedContent.length) {
-                serverSocket.to(clientID).emit("file-update", changedContent);  
+                //added "" black space at first element to add new line at starting
+                serverSocket.to(clientID).emit("file-update", ["", ...changedContent].join("\n"));  
                 connectedClient[clientID] = lines.length;
             }
         });
