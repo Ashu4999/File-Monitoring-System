@@ -17,6 +17,11 @@ export default function Home() {
       setSocketID(socket.id);
     });
 
+    socket.on("prev-file-update", (data) => {
+      console.log("File Update", data);
+      setLogData(prevData => data);
+    });
+
     socket.on("file-update", (data) => {
       console.log("File Update", data);
       setLogData(prevData => [prevData, data]);
